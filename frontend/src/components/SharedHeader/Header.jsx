@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-import { Button } from "../ui/button";
 
 const Header = () => {
   return (
@@ -12,8 +11,8 @@ const Header = () => {
           to={"/"}
           className="text-2xl font-bold flex flex-wrap text-center md:text-left"
         >
-          <span className="text-slate-700">Trend</span>
-          <span className="text-rose-400">Pulse</span>
+          <span className="text-slate-700">Daily</span>
+          <span className="text-rose-400">Desk</span>
         </Link>
 
         {/* Search */}
@@ -29,6 +28,7 @@ const Header = () => {
         </form>
 
         {/* Nav Links */}
+
         <div className="flex flex-col md:flex-row md:items-center gap-4 w-full md:w-auto">
           <ul className="flex flex-col md:flex-row gap-4 text-lg text-center md:text-left">
             <li>
@@ -58,6 +58,7 @@ const Header = () => {
           </ul>
 
           {/* Login Button */}
+
           <Link to={"/sign-in"}>
             <button className="bg-black text-white px-4 py-2 rounded-2xl font-medium cursor-pointer">
               Login

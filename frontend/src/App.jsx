@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/news" element={<NewsArticle />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-
+      <h1>{window.location.origin}</h1>
       <ToastContainer position="top-center" autoClose={3000} theme="colored" />
     </BrowserRouter>
   );

@@ -1,15 +1,18 @@
 import express from "express";
+
 import {
-  findAll,
-  deleteUser,
   SignIn,
   SignUp,
+  changePassword,
 } from "../controller/userController.js";
-const router = express.Router();
+
+import { verifyToken } from "../middleware/authMiddleware.js";
+export const router = express.Router();
 
 //router.METHOD("path", handlerFunction)
 router.post("/signup", SignUp);
 router.post("/signin", SignIn);
-router.get("/getall", findAll);
-router.delete("/delete", deleteUser);
+
+router.put("/changepassword", verifyToken, changePassword);
+
 export default router;

@@ -22,12 +22,15 @@ const SignInform = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:5000/api/auth/signin", data);
-      toast.success("sucessfully signed in");
+      await axios.post("http://localhost:5000/api/auth/signin", data, {
+        withCredentials: true, //  including this to store the token cookie
+      });
+      toast.success("Successfully signed in");
     } catch (error) {
-      toast.success("failed to sign in");
+      toast.error("Failed to sign in");
     }
   };
+
   return (
     <div className=" flex min-h-screen  items-center justify-center">
       <div className="w-full md:w-1/2 flex justify-center items-center px-4">
