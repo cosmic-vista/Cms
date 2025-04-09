@@ -11,6 +11,7 @@ import Header from "./components/SharedHeader/Header";
 // Import Toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./components/SharedHeader/Footer";
 
 const App = () => {
   return (
@@ -24,8 +25,13 @@ const App = () => {
         <Route path="/news" element={<NewsArticle />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-      <h1>{window.location.origin}</h1>
-      <ToastContainer position="top-center" autoClose={3000} theme="colored" />
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        theme="colored"
+      />
+      <Footer />
     </BrowserRouter>
   );
 };
