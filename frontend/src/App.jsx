@@ -12,6 +12,7 @@ import Header from "./components/SharedHeader/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/SharedHeader/Footer";
+import PrivateRoute from "./components/SharedHeader/PrivateRoute";
 
 const App = () => {
   return (
@@ -23,7 +24,11 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/news" element={<NewsArticle />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* // private route for dashbord access */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
 
       <ToastContainer

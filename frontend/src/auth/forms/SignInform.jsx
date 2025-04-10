@@ -4,7 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInFailure, signInStart, signInSuccess } from "@/redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 // Zod schema for validation
 const schema = z.object({
   email: z.string().email("Invalid email address"),
@@ -12,6 +14,9 @@ const schema = z.object({
 });
 
 const SignInform = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -22,12 +27,23 @@ const SignInform = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:5000/api/auth/signin", data, {
-        withCredentials: true, //  including this to store the token cookie
-      });
+      dispatch(signInStart());
+
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/signin",
+        data,
+        {
+          withCredentials: true, //  including this to store the token cookie
+        }
+      );
+      console.log(res.data);
+      dispatch(signInSuccess(res.data));
       toast.success("Successfully signed in");
+
+      navigate("/");
     } catch (error) {
       toast.error("Failed to sign in");
+      dispatch(signInFailure(error.message));
     }
   };
 
@@ -71,23 +87,18 @@ const SignInform = () => {
           >
             Sign In
           </button>
-          <div className="flex justify-between items-center text-sm text-white">
-            <label className="flex items-center gap-0.5">
-              <input type="checkbox" className="accent-red-500" />
-              <span>Remember me</span>
-            </label>
+          <div className="flex justify-between items-center text-sm text-gray-800 font-medium">
+            <span>
+              Don't have an account?
+              <Link to="/sign-up" className="hover:underline">
+                Sign Up
+              </Link>
+            </span>
+
             <button type="button" className="hover:underline">
               Forgot password?
             </button>
           </div>
-          <Link to={"/sign-up"}>
-            <button
-              type="button"
-              className="bg-rose-500 cursor-pointer hover:bg-rose-600 text-white font-semibold py-3 rounded-lg w-full transition-all duration-200 "
-            >
-              Sign Up
-            </button>
-          </Link>
         </form>
       </div>
     </div>

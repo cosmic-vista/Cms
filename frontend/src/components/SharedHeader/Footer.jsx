@@ -4,7 +4,7 @@ import { footerdata } from "@/assets/footerdata";
 
 const Footer = () => {
   return (
-    <div className="bg-black text-white py-8">
+    <div className="bg-black text-white py-8  ">
       <div className="container mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* About Us */}
         <div>

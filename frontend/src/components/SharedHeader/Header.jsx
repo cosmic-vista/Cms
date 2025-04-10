@@ -1,72 +1,178 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import axios from "axios";
+import { toast } from "react-toastify";
+import {
+  signOutStart,
+  signOutSuccess,
+  signOutFailure,
+} from "@/redux/userSlice.js";
+
 const Header = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { currentUser, loading, error } = useSelector((state) => state.user);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // ✅ Log user changes (clean and controlled)
+  useEffect(() => {
+    console.log("Current user changed:", currentUser);
+  }, [currentUser]);
+
+  // ✅ Set searchTerm if present in URL
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
+
+  // ✅ Sign out handler
+  const handleSignout = async () => {
+    try {
+      dispatch(signOutStart());
+      await axios.post(
+        "http://localhost:5000/api/auth/logout",
+        {},
+        { withCredentials: true }
+      );
+      dispatch(signOutSuccess());
+      toast.success("Logged out successfully");
+      navigate("/");
+    } catch (error) {
+      toast.error("Failed to log out");
+      dispatch(signOutFailure());
+    }
+  };
+
+  // ✅ Handle search form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("searchTerm", searchTerm);
+    navigate(`/search?${urlParams.toString()}`);
+  };
   return (
-    <nav className="shadow-lg border-2 rounded-xl">
-      <div className="flex flex-col md:flex-row md:justify-between items-center p-4 gap-4">
-        {/* Logo */}
-        <Link
-          to={"/"}
-          className="text-2xl font-bold flex flex-wrap text-center md:text-left"
-        >
-          <span className="text-slate-700">Daily</span>
-          <span className="text-rose-400">Desk</span>
-        </Link>
+    <header className="shadow-lg sticky">
+      <div className="flex flex-col gap-2 max-w-6xl lg:max-w-7xl mx-auto p-4">
+        {/* Top Bar */}
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link to={"/"}>
+            <h1 className="font-bold text-xl sm:text-2xl flex flex-wrap">
+              <span className="text-red-400">Daily</span>
+              <span className="text-slate-900">Desk</span>
+            </h1>
+          </Link>
 
-        {/* Search */}
-        <form className="bg-slate-200 rounded-lg flex items-center w-full max-w-sm md:mx-auto">
-          <input
-            type="text"
-            className="p-2 focus:outline-none w-full bg-transparent"
-            placeholder="Search"
-          />
-          <button type="submit" className="p-2 text-gray-500">
-            <FaSearch />
-          </button>
-        </form>
+          {/* Search */}
+          <form
+            className="p-3 bg-slate-100 rounded-lg flex items-center"
+            onSubmit={handleSubmit}
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              className="focus:outline-none bg-transparent w-24 sm:w-64"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button>
+              <FaSearch className="text-slate-600" />
+            </button>
+          </form>
 
-        {/* Nav Links */}
-
-        <div className="flex flex-col md:flex-row md:items-center gap-4 w-full md:w-auto">
-          <ul className="flex flex-col md:flex-row gap-4 text-lg text-center md:text-left">
-            <li>
-              <Link
-                to={"/"}
-                className="hover:text-cyan-500 font-serif transition-colors"
-              >
+          {/* Nav Links */}
+          <ul className="flex gap-4">
+            <Link to={"/"}>
+              <li className="hidden lg:inline text-slate-700 hover:underline">
                 Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={"/about"}
-                className="hover:text-cyan-500 font-serif transition-colors"
-              >
+              </li>
+            </Link>
+            <Link to={"/about"}>
+              <li className="hidden lg:inline text-slate-700 hover:underline">
                 About
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={"/news"}
-                className="hover:text-cyan-500 font-serif transition-colors"
-              >
-                Articles
-              </Link>
-            </li>
+              </li>
+            </Link>
+            <Link to={"/news"}>
+              <li className="hidden lg:inline text-slate-700 hover:underline">
+                News Articles
+              </li>
+            </Link>
           </ul>
 
-          {/* Login Button */}
+          {/* User Section */}
+          {currentUser ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div>
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/1999/1999625.png"
+                    alt="user avatar"
+                    className="w-10 h-10 rounded-full"
+                  />
+                </div>
+              </DropdownMenuTrigger>
 
-          <Link to={"/sign-in"}>
-            <button className="bg-black text-white px-4 py-2 rounded-2xl font-medium cursor-pointer">
-              Login
-            </button>
-          </Link>
+              <DropdownMenuContent className="w-60">
+                <DropdownMenuLabel className=" mt-0.5 text-center border-2 rounded-2xl">
+                  My Account
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator className="bg-gray-400 mt-0.5 text-center border-2 rounded-2xl" />
+                <DropdownMenuItem className="block font-serif text-sm ">
+                  <div className="flex flex-col gap-1">
+                    <span>
+                      {" "}
+                      Name : {currentUser.user.userName.toUpperCase()}
+                    </span>
+                    <span> Email : {currentUser.user.email}</span>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="font-semibold mt-2 text-center border-2 rounded-2xl">
+                  <Link to="/dashboard?tab=profile">Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="font-semibold mt-2  text-center border-2 rounded-2xl"
+                  onClick={handleSignout}
+                >
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link to="/sign-in">
+              <button className="bg-black text-white px-4 py-2 rounded-2xl font-medium cursor-pointer">
+                Login
+              </button>
+            </Link>
+          )}
+        </div>
+
+        {/* Loader & Error Feedback */}
+        <div className="text-center">
+          {loading && (
+            <p className="text-blue-500 text-sm font-medium">Logging out...</p>
+          )}
+          {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 
