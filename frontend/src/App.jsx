@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import SignInform from "./auth/forms/SignInform";
 import SignUpform from "./auth/forms/SignUpform";
 import Header from "./components/SharedHeader/Header";
+import Profile from "./Pages/Profile";
 
 // Import Toastify
 import { ToastContainer } from "react-toastify";
@@ -24,7 +25,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/news" element={<NewsArticle />} />
-
+        <Route path="/tab=profile" element={<Profile />} />
         {/* // private route for dashbord access */}
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />

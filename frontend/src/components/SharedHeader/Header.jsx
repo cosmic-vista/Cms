@@ -26,12 +26,11 @@ const Header = () => {
 
   const { currentUser, loading, error } = useSelector((state) => state.user);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  // best way to get username by  optional chaining
+  const username = currentUser?.user?.username;
+  const email = currentUser?.user?.email;
 
-  // ✅ Log user changes (clean and controlled)
-  useEffect(() => {
-    console.log("Current user changed:", currentUser);
-  }, [currentUser]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // ✅ Set searchTerm if present in URL
   useEffect(() => {
@@ -61,7 +60,7 @@ const Header = () => {
     }
   };
 
-  // ✅ Handle search form submit
+  // Handle search form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(location.search);
@@ -137,15 +136,12 @@ const Header = () => {
                 <DropdownMenuSeparator className="bg-gray-400 mt-0.5 text-center border-2 rounded-2xl" />
                 <DropdownMenuItem className="block font-serif text-sm ">
                   <div className="flex flex-col gap-1">
-                    <span>
-                      {" "}
-                      Name : {currentUser.user.userName.toUpperCase()}
-                    </span>
-                    <span> Email : {currentUser.user.email}</span>
+                    <span> Name : {username.toUpperCase()}</span>
+                    <span> Email : {email}</span>
                   </div>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="font-semibold mt-2 text-center border-2 rounded-2xl">
-                  <Link to="/dashboard?tab=profile">Profile</Link>
+                  <Link to="/tab=profile">Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   className="font-semibold mt-2  text-center border-2 rounded-2xl"

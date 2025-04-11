@@ -36,7 +36,7 @@ const SignInform = () => {
           withCredentials: true, //  including this to store the token cookie
         }
       );
-      console.log(res.data);
+      console.log("this is res from backend", res.data);
       dispatch(signInSuccess(res.data));
       toast.success("Successfully signed in");
 

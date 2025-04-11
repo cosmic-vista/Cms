@@ -88,13 +88,12 @@ export const SignIn = async (req, res) => {
 
     res.status(200).json({
       message: "Login successful",
-      // user: {
-      //   id: existingUser._id,
-      //   username: existingUser.userName,
-      //   email: existingUser.email,
-      //   token: token,
-      // },
-      user: existingUser,
+      user: {
+        id: existingUser._id,
+        username: existingUser.userName,
+        email: existingUser.email,
+        token: token,
+      },
     });
   } catch (error) {
     res.status(500).json({ message: "failed" });

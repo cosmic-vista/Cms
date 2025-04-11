@@ -4,8 +4,6 @@ const initialState = {
   currentUser: null,
   error: null,
   loading: false,
-  username: "",
-  email: "",
 };
 
 const userSlice = createSlice({
@@ -24,8 +22,10 @@ const userSlice = createSlice({
 
     signInSuccess: (state, action) => {
       state.currentUser = action.payload;
-      state.username = action.payload.username;
-      state.email = action.payload.email;
+      console.log(
+        " payload from the backend is  state.currentuser",
+        state.currentUser
+      );
       state.loading = false;
       state.error = null;
     },
@@ -70,7 +70,7 @@ const userSlice = createSlice({
 
     signOutSuccess: (state) => {
       state.currentUser = null;
-      (state.username = ""), (state.email = ""), (state.error = null);
+
       state.loading = false;
     },
     signOutFailure: (state) => {
