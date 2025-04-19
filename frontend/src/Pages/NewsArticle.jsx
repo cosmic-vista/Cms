@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 
 const NewsArticle = () => {
   return (
-    <div className="max-h-screen overflow-y-scroll max-w-full">
-      <h1 className="text-5xl">News Article</h1>
+    <div className="h-screen overflow-y-scroll max-w-full">
       <PostCard />
     </div>
   );

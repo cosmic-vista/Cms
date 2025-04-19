@@ -21,6 +21,7 @@ import DashboardProfile from "./components/SharedHeader/DashboardProfile";
 import PostCard from "./components/SharedHeader/PostCard";
 import ManagePost from "./components/SharedHeader/ManagePost";
 import PostPReview from "./Pages/PostPReview";
+import ManageUser from "./components/SharedHeader/ManageUser";
 
 const App = () => {
   return (
@@ -41,9 +42,8 @@ const App = () => {
           <Route element={<DashboardLayout />}>
             <Route path="/DashboardProfile" element={<DashboardProfile />} />
             <Route path="/about" element={<About />} />
-            <Route path="/news" element={<NewsArticle />} />
             <Route path="/posts/slug/:slug" element={<PostPReview />} />
-            {/* <Route path="/view-post" element={<PostCard />} /> */}
+            <Route path="/news" element={<NewsArticle />} />
           </Route>
         </Route>
 
@@ -55,9 +55,10 @@ const App = () => {
             <Route path="/manage-post" element={<ManagePost />} />
             <Route path="/DashboardProfile" element={<DashboardProfile />} />
             <Route path="/about" element={<About />} />
-            <Route path="/news" element={<NewsArticle />} />
+
             <Route path="/posts/slug/:slug" element={<PostPReview />} />
-            {/* <Route path="/view-post" element={<PostCard />} /> */}
+            <Route path="/news" element={<NewsArticle />} />
+            <Route path="/manage-user" element={<ManageUser />} />
           </Route>
         </Route>
         <Route path="/aboutus" element={<AboutUs />} />

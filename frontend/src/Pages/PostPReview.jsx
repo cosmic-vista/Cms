@@ -26,7 +26,7 @@ const PostPreview = () => {
   }, [slug]);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 mt-8 bg-white shadow-lg rounded-xl">
+    <div className="max-w-4xl mx-auto p-6 mt-8 bg-white shadow-lg rounded-xl block">
       {/* Title */}
       <h1 className="text-3xl font-bold text-blue-700 mb-4">
         {singlePost.title}

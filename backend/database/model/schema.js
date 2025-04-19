@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Creating the user Schema for Signup and creating new account
 const UserSchema = new Schema({
-  userName: { type: String, required: true, unique: true },
+  userName: { type: String, required: true },
   email: { type: String, unique: true, required: true },
   password: {
     type: String,

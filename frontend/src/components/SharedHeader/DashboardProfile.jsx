@@ -182,7 +182,7 @@ const DashboardProfile = () => {
             <img
               src={imageFileUrl || currentUser.user.profilePic}
               alt="Profile"
-              className="w-full h-full  object-cover rounded-full transform transition-transform duration-300 ease-in-out hover:scale-150"
+              className="w-full h-full  object-fit rounded-full transform transition-transform duration-300 ease-in-out hover:scale-150"
               onClick={() => profilePicRef.current.click()}
             />
           </div>
