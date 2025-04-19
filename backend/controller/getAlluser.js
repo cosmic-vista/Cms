@@ -11,7 +11,7 @@ export const getAllUser = async (req, res) => {
   try {
     const user = await User.find().select("-password");
 
-    res.status(200).json(user, "All user  are fetched ");
+    res.status(200).json(user);
   } catch (error) {
     console.error("Error fetching user:", error);
     res.status(500).json({ message: "Failed to fetch user" });
