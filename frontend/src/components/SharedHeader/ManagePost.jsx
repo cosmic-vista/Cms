@@ -12,7 +12,7 @@ const ManagePost = () => {
         "http://localhost:5000/api/admin/getPost",
         { withCredentials: true }
       );
-      setPosts(response.data);
+      setPosts(response.data.post);
       console.log("posts are ", response.data);
     } catch (error) {
       console.error("Error fetching posts:", error);

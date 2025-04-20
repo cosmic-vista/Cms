@@ -17,16 +17,17 @@ const PostCard = () => {
         "http://localhost:5000/api/admin/getPost",
         { withCredentials: true }
       );
-      setPosts(response.data);
+      setPosts(response.data.post);
     } catch (error) {
       console.error("Error fetching posts:", error);
     }
   };
-
+  // to laod post on visting page
   useEffect(() => {
     fetchPosts();
   }, []);
 
+  // reload all post after deleting any posts
   useEffect(() => {
     console.log("Updated posts:", posts);
   }, [posts]);

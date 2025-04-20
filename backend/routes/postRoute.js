@@ -8,6 +8,7 @@ import { deletePost } from "../controller/DeletePost.js";
 import { getSlug } from "../controller/fetchSlug.js";
 export const router = express.Router();
 import { getAllUser } from "../controller/getAlluser.js";
+
 router.post("/create", verifyToken, createPost);
 router.get("/getPost", getPost);
 router.delete("/deletePost/:id", deletePost);
