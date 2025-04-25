@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const ManagePost = () => {
   const [posts, setPosts] = useState([]);
@@ -73,8 +74,9 @@ const ManagePost = () => {
                 >
                   Delete
                 </td>
-                <td className="px-4 py-2  border text-blue-500 cursor-pointer w-1/4">
-                  Edit
+
+                <td className="px-4 py-2 border text-blue-500 cursor-pointer w-1/4 text-center mt-5">
+                  <Link to="/edit-post">Edit</Link>
                 </td>
               </tr>
             ))}
