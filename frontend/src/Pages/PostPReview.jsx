@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Advertisement from "@/components/SharedHeader/Advertisement";
 
 const PostPreview = () => {
   const [singlePost, setPost] = useState({});
@@ -66,6 +67,9 @@ const PostPreview = () => {
         className="text-gray-800 leading-relaxed text-md space-y-4"
         dangerouslySetInnerHTML={{ __html: singlePost.description }}
       />
+      <div className="mx-auto">
+        <Advertisement />
+      </div>
     </div>
   );
 };
