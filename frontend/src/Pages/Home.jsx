@@ -1,4 +1,5 @@
 import Advertisement from "@/components/SharedHeader/Advertisement";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRightCircle } from "lucide-react";
 import React from "react";
@@ -8,27 +9,35 @@ const Home = () => {
   return (
     <div className="h-auto min-h-screen bg-white">
       {/* Welcome Section */}
-      <div className="mx-auto flex flex-col gap-6 max-w-7xl p-10 md:p-28">
-        <h1 className="text-4xl md:text-5xl text-indigo-700 font-bold text-center">
-          Welcome to <span className="font-sans text-red-500">DailyDesk</span>
-        </h1>
+      <div className="flex flex-col sm:flex-row">
+        <div className="mx-auto  w-full flex flex-col gap-6 md:w-1/2 p-10 md:p-28">
+          <h1 className="text-4xl md:text-5xl text-indigo-700 font-bold text-center">
+            Welcome to <span className="font-sans text-red-500">DailyDesk</span>
+          </h1>
 
-        <p className="text-gray-700 text-2xl text-center mt-4 px-4 md:px-20">
-          Your daily gateway to trusted news, expert insights, and inspiring
-          stories. Stay informed, stay inspired all at one place you can{" "}
-          <span className="text-red-500 font-serif">Trust.</span>
-        </p>
+          <p className="text-gray-700 text-2xl text-center mt-4 px-4 md:px-20">
+            Your daily gateway to trusted news, expert insights, and inspiring
+            stories. Stay informed, stay inspired all at one place you can{" "}
+            <span className="text-red-500 font-serif">Trust.</span>
+          </p>
 
-        <p className="text-gray-500 text-center mt-2 italic">
-          Fresh updates, every day just for you.
-        </p>
+          <p className="text-gray-500 text-center mt-2 italic">
+            Fresh updates, every day just for you.
+          </p>
 
-        <div className="flex justify-center mt-6">
-          <Link to="/view-post">
-            <Button className="rounded-2xl bg-blue-500 flex items-center gap-2 text-lg">
-              Explore Stories <ArrowRightCircle />
-            </Button>
-          </Link>
+          <div className="flex justify-center mt-6">
+            <Link to="/view-post">
+              <Button className="rounded-2xl bg-blue-500 flex items-center gap-2 text-lg">
+                Explore Stories <ArrowRightCircle />
+              </Button>
+            </Link>
+          </div>
+        </div>
+        <div className=" w-full md:w-1/2 p-10 md:p-28  ">
+          <img
+            src="\public\Screenshot 2025-04-27 194053.png"
+            className="rounded-4xl mx:auto w-full "
+          />
         </div>
       </div>
 
@@ -62,7 +71,7 @@ const Home = () => {
           </p>
         </div>
       </section>
-      <div className=" flex items-center justify-center mx-auto mb-5">
+      <div className=" flex flex-col items-center justify-center mx-auto mb-5">
         <Advertisement />
       </div>
     </div>

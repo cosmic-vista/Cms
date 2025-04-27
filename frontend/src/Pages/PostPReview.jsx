@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Advertisement from "@/components/SharedHeader/Advertisement";
+import CommentLayout from "@/components/SharedHeader/CommentLayout";
 
 const PostPreview = () => {
   const [singlePost, setPost] = useState({});
   const { slug } = useParams();
+
+  const [recent, setRecent] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -25,6 +28,14 @@ const PostPreview = () => {
 
     getData();
   }, [slug]);
+
+  useEffect(() => {
+    try {
+      const getRecent = async () => {
+        const res = await axios.get(`http://localhost:5000/api/admin/posts`);
+      };
+    } catch (error) {}
+  }, []);
 
   return (
     <div className="max-w-4xl mx-auto p-6 mt-8 bg-white shadow-lg rounded-xl block">
@@ -69,6 +80,7 @@ const PostPreview = () => {
       />
       <div className="mx-auto">
         <Advertisement />
+        <CommentLayout postId={singlePost._id} userId={singlePost.userId} />
       </div>
     </div>
   );

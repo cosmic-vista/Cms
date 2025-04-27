@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { IoIosCreate } from "react-icons/io";
 import { SiNginxproxymanager } from "react-icons/si";
 import { MdManageAccounts } from "react-icons/md";
+import { TbLayoutDashboardFilled } from "react-icons/tb";
 
 const DashboardSidebar = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,14 @@ const DashboardSidebar = () => {
           <span>Profile</span>
         </Link>
       </div>
+      {currentUser.user.isAdmin && (
+        <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
+          <TbLayoutDashboardFilled />
+          <Link to="/Admin-Dashboard">
+            <span>Dashbaord</span>
+          </Link>
+        </div>
+      )}
 
       {currentUser.user.isAdmin && (
         <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
@@ -65,6 +74,7 @@ const DashboardSidebar = () => {
           </Link>
         </div>
       )}
+
       {currentUser.user.isAdmin && (
         <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
           <SiNginxproxymanager />

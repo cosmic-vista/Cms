@@ -21,7 +21,7 @@ const CommentSchema = new Schema(
       type: String,
       required: true,
     },
-    userProfilePic: {
+    picture: {
       type: String,
     },
   },

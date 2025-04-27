@@ -23,6 +23,7 @@ import ManagePost from "./components/SharedHeader/ManagePost";
 import PostPReview from "./Pages/PostPReview";
 import ManageUser from "./components/SharedHeader/ManageUser";
 import EditPost from "./Pages/EditPost";
+import MainDashboard from "./components/SharedHeader/MainDashboard";
 
 const App = () => {
   return (
@@ -38,7 +39,7 @@ const App = () => {
         <Route path="/view-post" element={<NewsArticle />} />
         <Route path="/posts/slug/:slug" element={<PostPReview />} />
 
-        {/* // private route for dashbord access */}
+        {/* private route for dashbord access */}
         <Route element={<PrivateRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/DashboardProfile" element={<DashboardProfile />} />
@@ -47,7 +48,7 @@ const App = () => {
           </Route>
         </Route>
 
-        {/* // private route for Admin access */}
+        {/* private route for Admin access */}
 
         <Route element={<AdminRoute />}>
           <Route element={<DashboardLayout />}>
@@ -57,6 +58,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
 
             <Route path="/posts/slug/:slug" element={<PostPReview />} />
+            <Route path="/Admin-Dashboard" element={<MainDashboard />} />
 
             <Route path="/manage-user" element={<ManageUser />} />
             <Route path="/edit-post/:id" element={<EditPost />} />
