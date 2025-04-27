@@ -56,18 +56,7 @@ const DashboardSidebar = () => {
           <span>Profile</span>
         </Link>
       </div>
-      <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
-        <GrArticle />
-        <Link to="/news">
-          <span>Articles</span>
-        </Link>
-      </div>
-      <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
-        <FcAbout />
-        <Link to="/about">
-          <span>About</span>
-        </Link>
-      </div>
+
       {currentUser.user.isAdmin && (
         <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
           <IoIosCreate />
@@ -92,6 +81,12 @@ const DashboardSidebar = () => {
           </Link>
         </div>
       )}
+      <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
+        <FcAbout />
+        <Link to="/about">
+          <span>About</span>
+        </Link>
+      </div>
 
       {/* Logout Item */}
       <div

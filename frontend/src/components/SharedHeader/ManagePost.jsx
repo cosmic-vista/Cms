@@ -76,7 +76,10 @@ const ManagePost = () => {
                 </td>
 
                 <td className="px-4 py-2 border text-blue-500 cursor-pointer w-1/4 text-center mt-5">
-                  <Link to="/edit-post">Edit</Link>
+                  {/*linking all post data to the edit button  */}
+                  <Link to={`/edit-post/${item._id}`} state={{ item }}>
+                    Edit
+                  </Link>
                 </td>
               </tr>
             ))}

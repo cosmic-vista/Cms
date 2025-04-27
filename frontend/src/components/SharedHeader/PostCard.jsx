@@ -93,7 +93,7 @@ const PostCard = () => {
           {displayedPosts.map((post) => (
             <div
               key={post._id}
-              className="bg-gray-100 rounded-2xl shadow-md p-4 hover:border-4 hover:border-rose-400 hover:shadow-lg transition duration-300 ease-in-out flex flex-col justify-between max-h-[400px]"
+              className="bg-white rounded-2xl shadow-md p-4 hover:border-4  hover:shadow-lg transition duration-300 ease-in flex flex-col justify-between max-h-[400px]"
             >
               <h1 className="text-2xl font-serif font-stretch-75% font-semibold  mb-2">
                 Topic: {post.title}

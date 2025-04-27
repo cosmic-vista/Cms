@@ -128,19 +128,12 @@ const Header = () => {
                   About
                 </li>
               </Link>
-              {currentUser ? (
-                <Link to={"/news"}>
-                  <li className=" w-full hidden lg:inline text-slate-800 hover:underline">
-                    News Articles
-                  </li>
-                </Link>
-              ) : (
-                <Link to={"/news"}>
-                  <li className="hidden lg:inline text-slate-800 hover:underline">
-                    News Articles
-                  </li>
-                </Link>
-              )}
+
+              <Link to={"/view-post"}>
+                <li className=" w-full hidden lg:inline text-slate-800 hover:underline">
+                  Articles
+                </li>
+              </Link>
             </ul>
 
             {/* User Section */}
@@ -151,7 +144,7 @@ const Header = () => {
                     <img
                       src={currentUser.user.profilePic}
                       alt="user avatar"
-                      className="w-10 h-10 rounded-full"
+                      className="w-10 h-10 object-fill rounded-full"
                     />
                   </div>
                 </DropdownMenuTrigger>

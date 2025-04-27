@@ -14,7 +14,7 @@ export const footerdata = {
     },
     {
       title: "News Article",
-      path: "/news",
+      path: "/view-post",
     },
   ],
 
