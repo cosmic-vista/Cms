@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ManageUser = () => {
-  const [user, setUser] = useState([]);
+  const [users, setUser] = useState([]);
   const [id, setId] = useState("");
 
   const fetchUser = async () => {
@@ -20,25 +20,24 @@ const ManageUser = () => {
     }
   };
 
-  //   const handelDelete = async (id) => {
-  //     const confirmDelete = window.confirm(
-  //       "Are you sure you want to delete this post?"
-  //     );
-  //     if (!confirmDelete) return;
-  //     try {
-  //       await axios.delete(`http://localhost:5000/api/admin/deletePost/${id}`, {
-  //         withCredentials: true,
-  //       });
-  //       toast.success("post deleted");
-  //       fetchUser();
-  //     } catch (error) {
-  //       console.error("Error deleting post :", error);
-  //     }
-  //   };
+  const handelDelete = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this User?"
+    );
+    if (!confirmDelete) return;
+    try {
+      await axios.delete(`http://localhost:5000/api/admin/deleteUser/${id}`, {
+        withCredentials: true,
+      });
+      toast.success("User deleted");
+      fetchUser();
+    } catch (error) {
+      console.error("Error deleting User :", error);
+    }
+  };
 
   useEffect(() => {
     fetchUser();
-    console.log(user);
   }, []);
 
   return (
@@ -59,27 +58,27 @@ const ManageUser = () => {
             </tr>
           </thead>
           <tbody className="font-serif">
-            {user.map((item) => (
-              <tr key={item._id} className="hover:bg-gray-50">
+            {users.map((user) => (
+              <tr key={user._id} className="hover:bg-gray-50">
                 <td className="p-2 h-32  border  w-1/4">
                   <img
-                    src={item.profilePic}
+                    src={user.profilePic}
                     alt="post"
                     className="w-20 h-20 mx-auto object-fit rounded"
                   />
                 </td>
-                <td className="px-4 py-2 border w-1/4">{item.userName}</td>
-                <td className="px-4 py-2 border w-1/4">{item.email}</td>
+                <td className="px-4 py-2 border w-1/4">{user.userName}</td>
+                <td className="px-4 py-2 border w-1/4">{user.email}</td>
                 <td className="px-4 py-2 border w-1/4 uppercase">
-                  {item.isAdmin.toString()}
+                  {user.isAdmin.toString()}
                 </td>
 
                 <td className="px-4 py-2  border text-blue-500 cursor-pointer w-1/4">
-                  {item._id}
+                  {user._id}
                 </td>
                 <td
                   className="px-4 py-2 border text-red-500 cursor-pointer w-1/4 text-center"
-                  onClick={() => handelDelete(item._id)}
+                  onClick={() => handelDelete(user._id)}
                 >
                   Delete
                 </td>
