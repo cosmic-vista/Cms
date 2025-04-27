@@ -43,7 +43,7 @@ export const SignIn = async (req, res) => {
       httpOnly: true,
       secure: true, // only sent over HTTPS
       sameSite: "Strict", // or 'Lax' depending on your frontend/backend setup
-      maxAge: 15 * 60 * 1000, // 15 minutes
+      maxAge: 60 * 60 * 1000, // 60 minutes
     });
 
     res.status(200).json({
