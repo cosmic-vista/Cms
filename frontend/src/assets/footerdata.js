@@ -18,12 +18,30 @@ export const footerdata = {
     },
   ],
 
-  contact: {
-    address: "221B Baker Street, London, UK",
-    email: "support@dailydesk.com",
-    phone: "+44 20 7946 0958",
-  },
+  contact: [
+    {
+      type: "address",
+      name: "Address",
+      value: "Sector-58, Noida, Uttar Pradesh",
+    },
+    {
+      type: "email",
+      name: "Email",
+      value: "ay7583@gmail.com",
+      url: "mailto:ay7583@gmail.com",
+    },
+    {
+      type: "phone",
+      name: "Phone",
+      value: "8874805562",
+      url: "tel:8874805562",
+    },
+  ],
 
-  social: ["Facebook", "Instagram", "linkedIn", "Twitter"],
+  social: [
+    { name: "Instagram", url: "https://instagram.com/ak88_74" },
+    { name: "LinkedIn", url: "https://linkedin.com/in/akash-yadav-4350072b2" },
+    { name: "Twitter", url: "https://twitter.com/@GaleticGaze" },
+  ],
   copyright: "DailyDesk",
 };
