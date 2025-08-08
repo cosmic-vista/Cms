@@ -13,8 +13,8 @@ const ManageUser = () => {
         "http://localhost:5000/api/user/get-all",
         { withCredentials: true }
       );
+      console.log("this is from managesuer", response);
       setUser(response.data);
-      console.log("users are ", response.data);
     } catch (error) {
       console.error("Error while fetching users:", error);
     }

@@ -29,7 +29,7 @@ const PostCard = () => {
 
   // reload all post after deleting any posts
   useEffect(() => {
-    console.log("Updated posts:", posts);
+    // console.log("Updated posts:", posts);
   }, [posts]);
 
   // Search submit handler
@@ -59,10 +59,6 @@ const PostCard = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">
-        All Posts
-      </h1>
-
       {/* Search form */}
       <form
         className="p-3 bg-slate-100 rounded-lg flex items-center justify-between mx-auto w-64 mb-6"

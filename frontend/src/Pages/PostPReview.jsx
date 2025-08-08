@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Advertisement from "@/components/SharedHeader/Advertisement";
 import CommentLayout from "@/components/SharedHeader/CommentLayout";
+import { FaUnderline } from "react-icons/fa";
 
 const PostPreview = () => {
   const [singlePost, setPost] = useState({});
@@ -38,7 +39,7 @@ const PostPreview = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 mt-8 bg-white shadow-lg rounded-xl block">
+    <div className="w-full mx-auto p-6 mt-8 bg-white shadow-lg rounded-xl block">
       {/* Title */}
       <h1 className="text-3xl font-bold text-blue-700 mb-4">
         {singlePost.title}
@@ -75,11 +76,16 @@ const PostPreview = () => {
 
       {/* Description */}
       <div
-        className="text-gray-800 leading-relaxed text-md space-y-4"
+        className="text-gray-800  leading-relaxed text-2xl space-y-4 pb-10"
         dangerouslySetInnerHTML={{ __html: singlePost.description }}
       />
-      <div className="mx-auto">
+      <div className=" flex flex-col items-center justify-center mx-auto mb-5">
         <Advertisement />
+      </div>
+
+      <hr className=" border-gray-800" />
+
+      <div className="mx-auto h-64 overflow-y-scroll mt-5">
         <CommentLayout postId={singlePost._id} userId={singlePost.userId} />
       </div>
     </div>

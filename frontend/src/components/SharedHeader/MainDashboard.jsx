@@ -1,95 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import DashboardCard from "./DashboardCard";
-import { convertToReadableFormat } from "@/lib/utils";
+import Progress from "./Progress"; // adjust path if needed
+import axios from "axios";
 
 const MainDashboard = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalPosts, setTotalPosts] = useState(0);
-  const [totalComments, setTotalComments] = useState(0);
+  const [totalComment, setTotalComment] = useState(0);
 
   const { currentUser } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch("/api/user/getusers");
-        const data = await res.json();
-        if (res.ok) {
-          setTotalUsers(data.totalUsers);
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch("/api/post/getposts");
-        const data = await res.json();
-        if (res.ok) {
-          setTotalPosts(data.totalPosts);
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-
-    const fetchComments = async () => {
-      try {
-        const res = await fetch("/api/comment/getcomments");
-        const data = await res.json();
-        if (res.ok) {
-          setTotalComments(data.totalComments);
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-
-    if (currentUser?.isAdmin) {
-      fetchUsers();
-      fetchPosts();
-      fetchComments();
+  const fetchUsers = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/user/get-all", {
+        withCredentials: true,
+      });
+      setTotalUsers(res.data.length);
+    } catch (error) {
+      console.log("User fetch error:", error.message);
     }
+  };
+
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/admin/getPost",
+        { withCredentials: true }
+      );
+      setTotalPosts(response.data.totalPost);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+  const fetchComment = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/user/get-all-Comment",
+        {
+          withCredentials: true,
+        }
+      );
+      setTotalComment(response.data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+    fetchPosts();
+    fetchComment();
   }, [currentUser]);
 
-  const dateRange = `${convertToReadableFormat(
-    currentUser?.createdAt
-  )} - ${convertToReadableFormat(Date.now())}`;
-
   return (
-    <div className="p-3 md:mx-auto">
-      <div className="flex-wrap flex gap-4 justify-center">
-        <DashboardCard
-          title="All Users"
-          description={dateRange}
-          chartData={[{ value: totalUsers, fill: "blue" }]}
-          chartConfig={{ users: { label: "Users" } }}
-          totalValue={totalUsers}
-          footerText={"Showing total users for all time"}
-          endAngle={250}
-        />
+    <div className="p-4 md:mx-auto">
+      <h1 className="text-xl font-bold mb-4 text-center">Dashboard Summary</h1>
 
-        <DashboardCard
-          title="All Comments"
-          description={dateRange}
-          chartData={[{ value: totalComments, fill: "orange" }]}
-          chartConfig={{ comments: { label: "Comments" } }}
-          totalValue={totalComments}
-          footerText={"Showing total comments for all time"}
-          endAngle={160}
-        />
-
-        <DashboardCard
-          title="All Posts"
-          description={dateRange}
-          chartData={[{ value: totalPosts, fill: "green" }]}
-          chartConfig={{ posts: { label: "Posts" } }}
-          totalValue={totalPosts}
-          footerText={"Showing total posts for all time"}
-          endAngle={110}
-        />
+      <div className="flex flex-wrap gap-6 justify-center">
+        <Progress value={totalUsers} label="Total Users" color="#6366f1" />
+        <Progress value={totalPosts} label="Total Posts" color="#6366f1" />
+        <Progress value={totalComment} label="Total Comment" color="#6366f1" />
       </div>
     </div>
   );

@@ -61,7 +61,7 @@ const CommentLayout = ({ postId, userId }) => {
       } catch (error) {}
     };
     fetchComment();
-  }, [postId]);
+  }, [postId, comment]);
 
   return (
     <div className=" max-w-3xl mx-auto w-full p-3 mt-6">

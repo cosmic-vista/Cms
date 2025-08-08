@@ -23,7 +23,7 @@ const DashboardSidebar = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
 
-  console.log("current isAdmin is ", currentUser.user.isAdmin);
+  // console.log("current isAdmin is ", currentUser.user.isAdmin);
 
   const handleClick = async () => {
     try {
@@ -91,12 +91,12 @@ const DashboardSidebar = () => {
           </Link>
         </div>
       )}
-      <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
+      {/* <div className="flex items-center gap-3 text-gray-700 hover:text-black cursor-pointer mb-6">
         <FcAbout />
         <Link to="/about">
           <span>About</span>
         </Link>
-      </div>
+      </div> */}
 
       {/* Logout Item */}
       <div

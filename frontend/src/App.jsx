@@ -30,6 +30,7 @@ const App = () => {
     <BrowserRouter>
       {/* redering header  */}
       <Header />
+
       <Routes>
         {/* main body parts */}
         <Route path="/" element={<Home />} />
