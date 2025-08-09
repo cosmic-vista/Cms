@@ -16,7 +16,7 @@ import { uploadFile, getFilePreview } from "../lib/appwrite/uploadImage";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import joditConfig from "@/assets/joditConfiguration";
-
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 const EditPost = () => {
   const { id } = useParams();
   const location = useLocation();
@@ -74,7 +74,7 @@ const EditPost = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/updatePost/${id}`,
+        `${backendUrl}/api/admin/updatePost/${id}`,
         {
           ...formdata,
           userId: currentUser?.user?.id,

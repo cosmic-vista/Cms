@@ -4,6 +4,7 @@ import { Input } from "../ui/input";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { FaSearch } from "react-icons/fa";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const PostCard = () => {
   const [posts, setPosts] = useState([]);
@@ -13,10 +14,9 @@ const PostCard = () => {
   // Fetch all posts on mount
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/admin/getPost",
-        { withCredentials: true }
-      );
+      const response = await axios.get(`${backendUrl}/api/admin/getPost`, {
+        withCredentials: true,
+      });
       setPosts(response.data.post);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -42,7 +42,7 @@ const PostCard = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:5000/api/auth/search/?query=${search}`,
+        `${backendUrl}/api/auth/search/?query=${search}`,
         {
           withCredentials: true,
         }

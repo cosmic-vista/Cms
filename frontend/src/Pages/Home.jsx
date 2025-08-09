@@ -35,7 +35,7 @@ const Home = () => {
         </div>
         <div className=" w-full md:w-1/2 p-10 md:p-28  ">
           <img
-            src="\public\Screenshot 2025-04-27 194053.png"
+            src="\Screenshot 2025-04-27 194053.png"
             className="rounded-4xl mx:auto w-full "
           />
         </div>

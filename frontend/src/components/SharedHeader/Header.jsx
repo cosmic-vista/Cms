@@ -19,6 +19,7 @@ import {
   signOutSuccess,
   signOutFailure,
 } from "@/redux/userSlice.js";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const Header = () => {
     try {
       dispatch(signOutStart());
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        `${backendUrl}/api/auth/logout`,
         {},
         { withCredentials: true }
       );
@@ -74,7 +75,7 @@ const Header = () => {
     try {
       console.log("query is ", query);
       const response = await axios.get(
-        `http://localhost:5000/api/auth/search/?query=${query}`,
+        `${backendUrl}/api/auth/search/?query=${query}`,
         {
           withCredentials: true,
         }

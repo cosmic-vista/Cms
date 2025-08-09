@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInFailure, signInStart, signInSuccess } from "@/redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 // Zod schema for validation
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 const schema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -29,13 +30,9 @@ const SignInform = () => {
     try {
       dispatch(signInStart());
 
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/signin",
-        data,
-        {
-          withCredentials: true, //  including this to store the token cookie
-        }
-      );
+      const res = await axios.post(`${backendUrl}/api/auth/signin`, data, {
+        withCredentials: true, //  including this to store the token cookie
+      });
       console.log("this is res from backend", res.data);
       dispatch(signInSuccess(res.data));
       toast.success("Successfully signed in");

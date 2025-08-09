@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import axios from "axios";
 import moment from "moment";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const CommentLayout = ({ postId, userId }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -23,7 +24,7 @@ const CommentLayout = ({ postId, userId }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/user/comment",
+        `${backendUrl}/api/user/comment`,
         {
           username,
           email,
@@ -53,7 +54,7 @@ const CommentLayout = ({ postId, userId }) => {
     const fetchComment = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/user/getPostComment/${postId}`
+          `${backendUrl}/api/user/getPostComment/${postId}`
         );
         setAllComment(res.data);
 

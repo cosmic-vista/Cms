@@ -17,6 +17,7 @@ import { uploadFile, getFilePreview } from "../lib/appwrite/uploadImage";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import joditConfig from "@/assets/joditConfiguration";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const CreatePost = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -55,7 +56,7 @@ const CreatePost = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/admin/create",
+        `${backendUrl}/api/admin/create`,
         {
           ...formdata,
           userId: currentUser?.user?.id,

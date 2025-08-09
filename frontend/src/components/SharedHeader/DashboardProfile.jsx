@@ -19,7 +19,7 @@ import {
   signOutSuccess,
   signOutFailure,
 } from "@/redux/userSlice.js";
-
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 const DashboardProfile = () => {
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const profilePicRef = useRef();
@@ -97,7 +97,7 @@ const DashboardProfile = () => {
       }
 
       const response = await axios.put(
-        "http://localhost:5000/api/user/update",
+        `${backendUrl}/api/user/update`,
         {
           username,
           email,
@@ -126,7 +126,7 @@ const DashboardProfile = () => {
     try {
       dispatch(deleteUserStart());
 
-      await axios.delete("http://localhost:5000/api/user/deleteAccount", {
+      await axios.delete(`${backendUrl}/api/user/deleteAccount`, {
         withCredentials: true,
       });
 
@@ -148,7 +148,7 @@ const DashboardProfile = () => {
       dispatch(signOutStart());
 
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        `${backendUrl}/api/auth/logout`,
         {},
         { withCredentials: true }
       );

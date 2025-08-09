@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const ManageUser = () => {
   const [users, setUser] = useState([]);
@@ -9,10 +10,9 @@ const ManageUser = () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/user/get-all",
-        { withCredentials: true }
-      );
+      const response = await axios.get(`${backendUrl}/api/user/get-all`, {
+        withCredentials: true,
+      });
       console.log("this is from managesuer", response);
       setUser(response.data);
     } catch (error) {
@@ -26,7 +26,7 @@ const ManageUser = () => {
     );
     if (!confirmDelete) return;
     try {
-      await axios.delete(`http://localhost:5000/api/admin/deleteUser/${id}`, {
+      await axios.delete(`${backendUrl}/api/admin/deleteUser/${id}`, {
         withCredentials: true,
       });
       toast.success("User deleted");

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Advertisement from "@/components/SharedHeader/Advertisement";
 import CommentLayout from "@/components/SharedHeader/CommentLayout";
 import { FaUnderline } from "react-icons/fa";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const PostPreview = () => {
   const [singlePost, setPost] = useState({});
@@ -15,7 +16,7 @@ const PostPreview = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/admin/posts/slug/${slug}`,
+          `${backendUrl}/api/admin/posts/slug/${slug}`,
           {
             withCredentials: true,
           }
@@ -33,7 +34,7 @@ const PostPreview = () => {
   useEffect(() => {
     try {
       const getRecent = async () => {
-        const res = await axios.get(`http://localhost:5000/api/admin/posts`);
+        const res = await axios.get(`${backendUrl}/api/admin/posts`);
       };
     } catch (error) {}
   }, []);

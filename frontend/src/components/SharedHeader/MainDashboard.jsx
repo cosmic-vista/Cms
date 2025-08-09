@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Progress from "./Progress"; // adjust path if needed
 import axios from "axios";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const MainDashboard = () => {
   const [totalUsers, setTotalUsers] = useState(0);
@@ -12,7 +13,7 @@ const MainDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/user/get-all", {
+      const res = await axios.get(`${backendUrl}/api/user/get-all`, {
         withCredentials: true,
       });
       setTotalUsers(res.data.length);
@@ -23,10 +24,9 @@ const MainDashboard = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/admin/getPost",
-        { withCredentials: true }
-      );
+      const response = await axios.get(`${backendUrl}/api/admin/getPost`, {
+        withCredentials: true,
+      });
       setTotalPosts(response.data.totalPost);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -35,7 +35,7 @@ const MainDashboard = () => {
   const fetchComment = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/user/get-all-Comment",
+        `${backendUrl}/api/user/get-all-Comment`,
         {
           withCredentials: true,
         }

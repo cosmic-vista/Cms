@@ -17,6 +17,7 @@ import { IoIosCreate } from "react-icons/io";
 import { SiNginxproxymanager } from "react-icons/si";
 import { MdManageAccounts } from "react-icons/md";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const DashboardSidebar = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const DashboardSidebar = () => {
     try {
       dispatch(signOutStart());
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        ` ${backendUrl}/api/auth/logout`,
         {},
         { withCredentials: true }
       );

@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 // Zod schema for validation
 const schema = z.object({
@@ -26,7 +27,7 @@ const SignUpform = () => {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:5000/api/auth/signup", data);
+      await axios.post(`${backendUrl}/api/auth/signup`, data);
       toast.success("Signup Successful!", {
         className: "bg-blue-500 text-white",
       });

@@ -3,16 +3,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+const backendUrl = import.meta.env.REACT_APP_BACKEND_URL;
 
 const ManagePost = () => {
   const [posts, setPosts] = useState([]);
   const [id, setId] = useState("");
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/admin/getPost",
-        { withCredentials: true }
-      );
+      const response = await axios.get(`${backendUrl}/api/admin/getPost`, {
+        withCredentials: true,
+      });
       console.log("this is from post", response.data.post);
       setPosts(response.data.post);
     } catch (error) {
@@ -26,7 +26,7 @@ const ManagePost = () => {
     );
     if (!confirmDelete) return;
     try {
-      await axios.delete(`http://localhost:5000/api/admin/deletePost/${id}`, {
+      await axios.delete(`${backendUrl}/api/admin/deletePost/${id}`, {
         withCredentials: true,
       });
       toast.success("post deleted");
