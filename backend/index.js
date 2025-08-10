@@ -20,7 +20,7 @@ const app = express();
 // const frontendOrigin = "http://localhost:5173";
 // -----------------------------
 // NEW: deployed frontend URL for CORS
-const frontendOrigin = "https://cms-frontend-000.web.app";
+const frontendOrigin = "https://project1-ccdb4.web.app";
 
 app.use(
   cors({
