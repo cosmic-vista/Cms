@@ -44,8 +44,8 @@ export const SignIn = async (req, res) => {
       secure: true, // only sent over HTTPS
       sameSite: "Strict", // or 'Lax' depending on your frontend/backend setup
       sameSite: "none", // because my frontend and backend are on different domains this was casuing a lot of issue
-      // maxAge: 60 * 60 * 1000, // 60 minutes
-      maxAge: 30 * 1000, // 30 sec test
+      maxAge: 60 * 60 * 1000, // 60 minutes
+      // maxAge: 30 * 1000, // 30 sec test
     });
 
     res.status(200).json({
