@@ -119,7 +119,7 @@ const CreatePost = () => {
         <div className="flex flex-col md:flex-row gap-6 text-xl md:text-2xl">
           <Input
             type="file"
-            accept="image/*"
+            accept="image/*,video/*"
             className="w-full md:w-3/4"
             onChange={(e) => setfile(e.target.files[0])}
           />
@@ -132,14 +132,20 @@ const CreatePost = () => {
             {loading ? "Uploading..." : "Upload"}
           </Button>
         </div>
-
-        {url && (
-          <img
-            src={url.href}
-            alt="Preview"
-            className="w-auto h-auto object-cover m-6 rounded-lg"
-          />
-        )}
+        {url &&
+          (url.mimeType.startsWith("video/") ? (
+            <video
+              src={url.href}
+              controls
+              className="w-full h-auto object-cover m-6 rounded-lg"
+            />
+          ) : (
+            <img
+              src={url.href}
+              alt="Preview"
+              className="w-auto h-auto object-cover m-6 rounded-lg"
+            />
+          ))}
 
         {/* OLD: <QuillEditor onChange={(val) => setFormdata({ ...formdata, description: val })} /> */}
 
