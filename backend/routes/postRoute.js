@@ -12,7 +12,7 @@ import { updatePost } from "../controller/updatePost.js";
 import { deleteUser } from "../controller/DeleteAccount.js";
 
 router.post("/create", verifyToken, createPost);
-router.get("/getPost", getPost);
+router.get("/getPost", verifyToken, getPost);
 router.delete("/deletePost/:id", deletePost);
 router.delete("/deleteUser/:id", deleteUser);
 router.get("/posts/slug/:slug", getSlug);

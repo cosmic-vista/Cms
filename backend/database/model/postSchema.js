@@ -17,7 +17,8 @@ const postSchema = new Schema(
       default: "uncategorized",
     },
     image: {
-      type: String,
+      url: { type: String, required: true }, // File URL
+      mimeType: { type: String, required: true }, // File MIME type
     },
     description: {
       type: String,
