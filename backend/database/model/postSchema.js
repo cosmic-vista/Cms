@@ -28,11 +28,11 @@ const postSchema = new Schema(
       required: true,
       unique: true,
     },
-    status: {
-      type: String,
-      enum: ["pending", "approved", "rejected"],
-      default: "pending",
-    },
+    // status: {
+    //   type: String,
+    //   enum: ["pending", "approved", "rejected"],
+    //   default: "pending",
+    // },
   },
   { timestamps: true }
 );
