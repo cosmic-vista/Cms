@@ -20,28 +20,26 @@ export const getPostComment = async (req, res) => {
 export const getAllComment = async (req, res) => {
   const userId = req.user.userId;
 
-<<<<<<< HEAD
-  // check if user exists and is admin
-=======
 
->>>>>>> 10a3016918b314305899294ede69670a00596638
+
+
   const user = await User.findById(userId);
   if (!user || !user.isAdmin) {
     return res.status(403).json({ message: "Only admins are allowed" });
   }
 
   try {
-<<<<<<< HEAD
+
     // Total number of comments
     const CommentCount = await Comment.countDocuments();
 
     // Fetch recent 5 comments, newest first
-=======
+
     
     const CommentCount = await Comment.countDocuments();
 
     
->>>>>>> 10a3016918b314305899294ede69670a00596638
+
     const recentComments = await Comment.find()
       .sort({ createdAt: -1 })
       .limit(5)
@@ -62,10 +60,8 @@ export const deleteComment = async (req, res) => {
   const userId = req.user.userId;
   const { commentId } = req.params;
 
-<<<<<<< HEAD
-  // check if user exists and is admin
-=======
->>>>>>> 10a3016918b314305899294ede69670a00596638
+
+
   const user = await User.findById(userId);
   if (!user || !user.isAdmin) {
     return res.status(403).json({ message: "Only admins are allowed" });
