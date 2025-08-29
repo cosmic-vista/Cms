@@ -33,6 +33,7 @@ export const updateProfile = async (req, res) => {
         username: user.userName,
         email: user.email,
         profilePic: user.profilePic,
+         isAdmin: user.isAdmin, // adding this so that i can fix my admin panel switching 
       },
     });
   } catch (error) {

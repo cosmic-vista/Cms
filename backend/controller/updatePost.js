@@ -14,7 +14,12 @@ export const updatePost = async (req, res) => {
     post.title = title || post.title;
     post.description = description || post.description;
     post.category = category || post.category;
-    post.image = image || post.image;
+ 
+    if (image?.url && image?.mimeType) {
+      post.image.url = image.url;
+      post.image.mimeType = image.mimeType;
+    }
+
 
     const updatedPost = await post.save();
 

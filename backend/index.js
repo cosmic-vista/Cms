@@ -14,6 +14,24 @@ dotenv.config();
 connectDB();
 
 const app = express();
+<<<<<<< HEAD
+=======
+
+// -----------------------------
+// OLD: localhost frontend URL for CORS
+// const frontendOrigin = "http://localhost:5173";
+// -----------------------------
+// NEW: deployed frontend URL for CORS
+const frontendOrigin = "https://project1-ccdb4.web.app";
+
+app.use(
+  cors({
+    origin: frontendOrigin, // Allow only this frontend origin
+    credentials: true,
+  })
+);
+
+>>>>>>> 10a3016918b314305899294ede69670a00596638
 // Middleware for parsing JSON and URL-encoded bodies with increased limit
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ limit: "20mb", extended: true }));

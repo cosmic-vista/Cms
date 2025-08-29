@@ -123,12 +123,38 @@ const EditPost = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Category</SelectLabel>
-                <SelectItem value="world news">World News</SelectItem>
-                <SelectItem value="local news">Local News</SelectItem>
-                <SelectItem value="sports">Sports</SelectItem>
-                <SelectItem value="technology">Technology</SelectItem>
-                <SelectItem value="business">Business</SelectItem>
-                <SelectItem value="entertainment">Entertainment</SelectItem>
+                <SelectItem value="road cleaning">🧹 Road Cleaning</SelectItem>
+                <SelectItem value="tree plantation">
+                  🌳 Tree Plantation
+                </SelectItem>
+                <SelectItem value="blood donation">
+                  🩸 Blood Donation
+                </SelectItem>
+                <SelectItem value="community awareness">
+                  📢 Community Awareness
+                </SelectItem>
+                <SelectItem value="local events">🎉 Local Events</SelectItem>
+                <SelectItem value="education initiatives">
+                  📚 Education Initiatives
+                </SelectItem>
+                <SelectItem value="health campaigns">
+                  💉 Health Campaigns
+                </SelectItem>
+                <SelectItem value="recycling drives">
+                  ♻️ Recycling Drives
+                </SelectItem>
+                <SelectItem value="food distribution">
+                  🍲 Food Distribution
+                </SelectItem>
+                <SelectItem value="animal welfare">
+                  🐾 Animal Welfare
+                </SelectItem>
+                <SelectItem value="safety patrols">
+                  🚓 Safety Patrols
+                </SelectItem>
+                <SelectItem value="cultural programs">
+                  🎭 Cultural Programs
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -137,7 +163,7 @@ const EditPost = () => {
         <div className="flex flex-col md:flex-row gap-6 text-xl md:text-2xl">
           <Input
             type="file"
-            accept="image/*"
+            accept="image/*,video/*"
             className="w-full md:w-3/4"
             onChange={(e) => setfile(e.target.files[0])}
           />
