@@ -29,16 +29,8 @@ export const getAllComment = async (req, res) => {
   }
 
   try {
-
-    // Total number of comments
-    const CommentCount = await Comment.countDocuments();
-
-    // Fetch recent 5 comments, newest first
-
     
     const CommentCount = await Comment.countDocuments();
-
-    
 
     const recentComments = await Comment.find()
       .sort({ createdAt: -1 })
