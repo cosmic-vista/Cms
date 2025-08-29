@@ -17,8 +17,8 @@ const postSchema = new Schema(
       default: "uncategorized",
     },
     image: {
-      url: { type: String, required: true }, // File URL
-      mimeType: { type: String, required: true }, // File MIME type
+      url: { type: String, required: true },
+      mimeType: { type: String, required: true },
     },
     description: {
       type: String,
@@ -27,6 +27,11 @@ const postSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
     },
   },
   { timestamps: true }
