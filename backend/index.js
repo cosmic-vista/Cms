@@ -14,8 +14,6 @@ dotenv.config();
 connectDB();
 
 const app = express();
-<<<<<<< HEAD
-=======
 
 // -----------------------------
 // OLD: localhost frontend URL for CORS
@@ -31,20 +29,11 @@ app.use(
   })
 );
 
->>>>>>> 10a3016918b314305899294ede69670a00596638
 // Middleware for parsing JSON and URL-encoded bodies with increased limit
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ limit: "20mb", extended: true }));
 
-// Use 'let' because we want to change this dynamically
-let frontendOrigin = "http://localhost:5173";
 
-app.use(
-  cors({
-    origin: "http://localhost:5173", // or whatever port your frontend runs on
-    credentials: true, // allow cookies and auth headers
-  })
-);
 
 // Middleware for parsing cookies
 app.use(cookieParser());
@@ -53,17 +42,6 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoute);
 app.use("/api/admin", postRoute);
-
-// // Route to dynamically update frontendOrigin (optional)
-// app.post("/api/set-frontend-origin", (req, res) => {
-//   if (req.body.origin) {
-//     frontendOrigin = req.body.origin;
-//     console.log(`Frontend origin set to: ${frontendOrigin}`);
-//     return res.sendStatus(200);
-//   }
-//   res.status(400).send("Origin not provided");
-// });
-
 // Basic root route for sanity check
 app.get("/", (req, res) => {
   res.send("hello user");
