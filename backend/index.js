@@ -14,12 +14,13 @@ dotenv.config();
 connectDB();
 
 const app = express();
-// NEW: deployed frontend URL for CORS
+
 const frontendOrigin = "http://localhost:5173";
 
 // Middleware for parsing JSON and URL-encoded bodies with increased limit
 app.use(express.json({ limit: "20mb" }));
 app.use(express.urlencoded({ limit: "20mb", extended: true }));
+
 
 app.use(
   cors({
@@ -27,6 +28,7 @@ app.use(
     credentials: true,
   })
 );
+
 
 // Middleware for parsing cookies
 app.use(cookieParser());
