@@ -27,3 +27,14 @@ export const getPost = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch posts" });
   }
 };
+
+export const getPostWithoutToken = async (req, res) => {
+  try {
+    const post = await Post.find({}).limit(3).sort({ createdAt: -1 });
+    const totalPost = post.length;
+    res.status(200).json({ post, totalPost });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ message: "Failed to fetch posts" });
+  }
+};

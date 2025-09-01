@@ -15,7 +15,6 @@ import {
 } from "../controller/getPostComment.js";
 
 
-
 router.put("/changepassword", verifyToken, changePassword);
 router.put("/update", verifyToken, updateProfile);
 router.delete("/deleteAccount", verifyToken, deleteAccount);

@@ -13,7 +13,7 @@ export const verifyToken = (req, res, next) => {
     // Middleware
     req.user = decode;
     // attach user info -->>>>This line attaches the decoded token payload (from the JWT) to the req object so that you can access user info in any route/controller that runs after the middleware.
-    console.log("this is req.user from authMiddleaerw", req.user);
+
     next();
   } catch (err) {
     return res.status(401).json({ message: "Invalid token" });

@@ -16,11 +16,8 @@ export const getPostComment = async (req, res) => {
   }
 };
 
-
 export const getAllComment = async (req, res) => {
   const userId = req.user.userId;
-
-
 
 
   const user = await User.findById(userId);
@@ -29,6 +26,8 @@ export const getAllComment = async (req, res) => {
   }
 
   try {
+
+
     
     const CommentCount = await Comment.countDocuments();
 
@@ -51,7 +50,6 @@ export const getAllComment = async (req, res) => {
 export const deleteComment = async (req, res) => {
   const userId = req.user.userId;
   const { commentId } = req.params;
-
 
 
   const user = await User.findById(userId);
