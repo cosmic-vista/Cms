@@ -15,7 +15,7 @@ connectDB();
 
 const app = express();
 
-const frontendOrigin = "http://localhost:5173";
+const frontendOrigin = "https://project1-ccdb4.web.app/";
 
 // Middleware for parsing JSON and URL-encoded bodies with increased limit
 app.use(express.json({ limit: "20mb" }));
