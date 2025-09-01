@@ -18,11 +18,7 @@ const postSchema = new Schema(
     },
     image: {
       url: { type: String, required: true },
-<<<<<<< HEAD
       mimeType: { type: String, required: true },
-=======
-      mimeType: { type: String, required: true }, 
->>>>>>> 10a3016918b314305899294ede69670a00596638
     },
     description: {
       type: String,

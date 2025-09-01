@@ -3,7 +3,7 @@ import Post from "../database/model/postSchema.js";
 export const createPost = async (req, res, next) => {
   // checking if the user in admin or not
 
-  if (!req.user.isAdmin) {
+  if (!req.user) {
     return res
       .status(403)
       .json({ message: "You are not allowed to create a post" });

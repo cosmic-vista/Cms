@@ -7,15 +7,11 @@ import { deleteAccount, deleteUser } from "../controller/DeleteAccount.js";
 import { updateProfile } from "../controller/UpdateUser.js";
 import { getAllUser } from "../controller/getAlluser.js";
 import { createcomment } from "../controller/createComment.js";
-<<<<<<< HEAD
 import {
   getPostComment,
   getAllComment,
   deleteComment,
 } from "../controller/getPostComment.js";
-=======
-import { getPostComment, getAllComment ,deleteComment} from "../controller/getPostComment.js";
->>>>>>> 10a3016918b314305899294ede69670a00596638
 
 router.put("/changepassword", verifyToken, changePassword);
 router.put("/update", verifyToken, updateProfile);
